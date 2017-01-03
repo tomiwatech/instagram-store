@@ -2,8 +2,8 @@ import assert from 'assert';
 import request from 'supertest';
 import app from '../../index.js';
 
-describe('Integration test', function() {
-    it('Test routes', function(done) {
+describe('Integration test', () =>{
+    it('Test routes', done =>{
         request(app)
             .get('/api/')
             .set('Content-Type', 'application/json')
