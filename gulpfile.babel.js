@@ -9,7 +9,6 @@ const plugins = gulpLoadPlugins();
 
 const paths = {
     js: ['./**/*.js', '!dist/**', '!node_modules/**', '!test/**', '!coverage/**', '!log/**'],
-    bin: 'bin/*',
     files: ['./package.json', './.gitignore'],
     tests: {
         integration: './test/integration/**/*.js',
@@ -35,7 +34,7 @@ gulp.task('copy', () =>
 );
 
 gulp.task('babel', () =>
-    gulp.src([...paths.js, paths.bin, '!gulpfile.babel.js'], { base: '.' })
+    gulp.src([...paths.js, '!gulpfile.babel.js'], { base: '.' })
         .pipe(plugins.newer(paths.build))
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.babel())
@@ -50,7 +49,7 @@ gulp.task('babel', () =>
 
 gulp.task('nodemon', ['copy', 'babel'], () =>
     plugins.nodemon({
-        script: path.join(paths.build, 'bin/www'),
+        script: path.join(paths.build, 'index.js'),
         ignore: ['node_modules/**/*.js', 'dist/**/*.js'],
         tasks: ['copy', 'babel']
     })
