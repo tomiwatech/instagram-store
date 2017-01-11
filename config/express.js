@@ -3,9 +3,10 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import FileStreamRotator from 'file-stream-rotator';
+
 import loggerInit from './logger';
 import routes from '../app/routes/index';
-// import config from './config';
+import config from './';
 
 const logDirectory = './log';
 const checkLogDir = fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
@@ -36,7 +37,7 @@ const expressConfig = (app) => {
     if (checkLogDir) {
         accessLogStream = FileStreamRotator.getStream({
             date_format: 'YYYYMMDD',
-            filename: logDirectory + '/access-%DATE%.log',
+            filename: `${logDirectory}/access-%DATE%.log`,
             frequency: 'weekly',
             verbose: false
         });
