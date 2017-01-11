@@ -37,7 +37,7 @@ const expressConfig = (app) => {
     if (checkLogDir) {
         accessLogStream = FileStreamRotator.getStream({
             date_format: 'YYYYMMDD',
-            filename: `${logDirectory}/access-%DATE%.log`,
+            filename: logDirectory + '/access-%DATE%.log',
             frequency: 'weekly',
             verbose: false
         });
