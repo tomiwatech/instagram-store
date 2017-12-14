@@ -7,7 +7,7 @@ import production from './env/production';
 
 const extend = (util)._extend;
 const defaults = {
-    root: path.normalize(__dirname + '/..')
+    root: path.normalize(`${__dirname}/..`)
 };
 
 const environment = {
