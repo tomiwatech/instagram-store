@@ -1,15 +1,15 @@
-FROM node:boron
+FROM node:carbon
 
 # Create app directory
-RUN mkdir -p /usr/src/Atlas-Service-Template
-WORKDIR /usr/src/Atlas-Service-Template
+RUN mkdir -p /usr/src/nodejs-template
+WORKDIR /usr/src/nodejs-template
 
 # Install app dependencies
-COPY package.json /usr/src/Atlas-Service-Template/
+COPY package.json /usr/src/nodejs-template/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/Atlas-Service-Template
+COPY . /usr/src/nodejs-template
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
