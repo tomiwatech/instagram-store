@@ -99,7 +99,7 @@ $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               latest              01f818af747d        6 days ago          181.6 MB
 node                 boron              539c0211cd76        3 weeks ago        80.0 MB
-<your username>/node-js-template         latest              c54a2cc56cbb        6 months ago        1.848 kB
+<your username>/nodejs-template         latest              c54a2cc56cbb        6 months ago        1.848 kB
 ```
 
 **Run your image**
@@ -107,7 +107,7 @@ node                 boron              539c0211cd76        3 weeks ago        8
 Run the image with `-d` in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container.
 
 ``` console
-$ docker run -p 8080:8080 -d <your username>/node-js-template
+$ docker run -p 8080:8080 -d <your username>/nodejs-template
 ```
 
 Run `docker ps` to get container information:
