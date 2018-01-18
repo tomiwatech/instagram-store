@@ -65,7 +65,7 @@ const expressConfig = (app) => {
     });
 
 
-    app.use('/api/', routes);
+    app.use('/v1/', routes);
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {

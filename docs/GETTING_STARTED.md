@@ -1,6 +1,6 @@
 ## Getting started
 
-Make sure you have at least Node.js 6.9.1 (7.3.0 recommended) installed.
+Make sure you have at least Node.js 7.3.0 (8.9.3 recommended) installed.
 
 You can check your Node.js version by running node -v:
 
@@ -65,17 +65,17 @@ The following example shows a Dockerfile
 FROM node:boron
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /usr/src/nodejs-template
+WORKDIR /usr/src/nodejs-template
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json /usr/src/nodejs-template/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/app
+COPY . /usr/src/nodejs-template
 
-EXPOSE 80
+EXPOSE 8080
 CMD [ "npm", "start" ]
 ```
 
@@ -88,7 +88,7 @@ A `dockerignore` file should be in the same directory as your `Dockerfile`, as i
 Change directory to where your `Dockerfile` exists and run the following command. The `-t` flag lets you tag your image.
 
 ``` console
-$ docker build -t <your username>/node-js-template .
+$ docker build -t <your username>/nodejs-template .
 ```
 
 Run `docker images ` to show your built image:
@@ -99,7 +99,7 @@ $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               latest              01f818af747d        6 days ago          181.6 MB
 node                 boron              539c0211cd76        3 weeks ago        80.0 MB
-<your username>/node-js-template         latest              c54a2cc56cbb        6 months ago        1.848 kB
+<your username>/nodejs-template         latest              c54a2cc56cbb        6 months ago        1.848 kB
 ```
 
 **Run your image**
@@ -107,22 +107,22 @@ node                 boron              539c0211cd76        3 weeks ago        8
 Run the image with `-d` in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container.
 
 ``` console
-$ docker run -p 80:80 -d <your username>/node-js-template
+$ docker run -p 8080:8080 -d <your username>/nodejs-template
 ```
 
 Run `docker ps` to get container information:
 
 ``` console
-CONTAINER ID        IMAGE                                CREATED             STATUS              PORTS 
-6a0f008a639c        <your username>/node-js-template     9 minutes ago       Up 2 minutes        0.0.0.0:80->80/tcp, 443/tcp  
+CONTAINER ID        IMAGE                                CREATED             STATUS              PORTS
+6a0f008a639c        <your username>/nodejs-template     9 minutes ago       Up 2 minutes        0.0.0.0:8080->8080/tcp, 443/tcp
 ```
 
-Docker is now mapped to `localhost:80` inside of the container to port 80 on your machine.
+Docker is now mapped to `localhost:8080` inside of the container to port 8080 on your machine.
 
-Using `curl` 
+Using `curl`
 
 ``` console
-$ curl -i -X GET localhost/api                                                                                                           
+$ curl -i -X GET localhost:8080/api
 
 HTTP/1.1 200 OK
 X-DNS-Prefetch-Control: off
