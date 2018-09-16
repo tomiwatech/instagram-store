@@ -14,9 +14,8 @@ v7.3.0
 Navigate to your work directory and clone the project into <project-name> folder, change directory to the `new folder` and add a new remote origin pointing to the new project repo.
 
 ``` console
-$ git clone https://github.com/AtlasCardDev/nodejs-template.git <project-name>
+$ git clone git@gitlab.com:one-percent/ig-store-backend.git
 $ cd <project-name>
-~/project-name $ git remote add origin https://github.com/AtlasCardDev/<project-name>.git
 ```
 
 #### `gulp`
@@ -65,15 +64,15 @@ The following example shows a Dockerfile
 FROM node:boron
 
 # Create app directory
-RUN mkdir -p /usr/src/nodejs-template
-WORKDIR /usr/src/nodejs-template
+RUN mkdir -p /usr/src/ig-store-backend
+WORKDIR /usr/src/ig-store-backend
 
 # Install app dependencies
-COPY package.json /usr/src/nodejs-template/
+COPY package.json /usr/src/ig-store-backend/
 RUN npm install
 
 # Bundle app source
-COPY . /usr/src/nodejs-template
+COPY . /usr/src/ig-store-backend
 
 EXPOSE 8080
 CMD [ "npm", "start" ]
@@ -88,7 +87,7 @@ A `dockerignore` file should be in the same directory as your `Dockerfile`, as i
 Change directory to where your `Dockerfile` exists and run the following command. The `-t` flag lets you tag your image.
 
 ``` console
-$ docker build -t <your username>/nodejs-template .
+$ docker build -t <your username>/ig-store-backend .
 ```
 
 Run `docker images ` to show your built image:
@@ -99,7 +98,7 @@ $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               latest              01f818af747d        6 days ago          181.6 MB
 node                 boron              539c0211cd76        3 weeks ago        80.0 MB
-<your username>/nodejs-template         latest              c54a2cc56cbb        6 months ago        1.848 kB
+<your username>/ig-store-backend         latest              c54a2cc56cbb        6 months ago        1.848 kB
 ```
 
 **Run your image**
@@ -107,14 +106,14 @@ node                 boron              539c0211cd76        3 weeks ago        8
 Run the image with `-d` in detached mode, leaving the container running in the background. The `-p` flag redirects a public port to a private port inside the container.
 
 ``` console
-$ docker run -p 8080:8080 -d <your username>/nodejs-template
+$ docker run -p 8080:8080 -d <your username>/ig-store-backend
 ```
 
 Run `docker ps` to get container information:
 
 ``` console
 CONTAINER ID        IMAGE                                CREATED             STATUS              PORTS
-6a0f008a639c        <your username>/nodejs-template     9 minutes ago       Up 2 minutes        0.0.0.0:8080->8080/tcp, 443/tcp
+6a0f008a639c        <your username>/ig-store-backend     9 minutes ago       Up 2 minutes        0.0.0.0:8080->8080/tcp, 443/tcp
 ```
 
 Docker is now mapped to `localhost:8080` inside of the container to port 8080 on your machine.

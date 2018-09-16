@@ -1,4 +1,4 @@
-# Node.js Template
+# IG STORE BACKEND
 
 This repository contains the Template for Micro Services.
 
@@ -10,4 +10,4 @@ This repository contains the Template for Micro Services.
 
 ## Copyright
 
-Copyright (c) 2017 Atlas Card Holdings
+Copyright (c) 2017 One-percentlab
