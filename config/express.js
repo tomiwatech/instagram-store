@@ -7,6 +7,7 @@ import FileStreamRotator from 'file-stream-rotator';
 import loggerInit from './logger';
 import routes from '../app/routes/index';
 import config from './';
+import apiVersion1 from './versioning/v1';
 
 const logDirectory = './log';
 const checkLogDir = fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
@@ -55,17 +56,9 @@ const expressConfig = (app) => {
     app.use(helmet());
     app.disable('x-powered-by');
 
-
-    app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'Authorization, Origin, Content-Type, Accept');
-        res.setHeader('Access-Control-Allow-Credentials', true);
-        next();
-    });
-
-
-    app.use('/v1/', routes);
+    app.use('/api/v1', apiVersion1);
+    //app.use('/api/v2', apiVersion2);
+    //app.use('/v1/', routes);
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {
@@ -82,10 +75,10 @@ const expressConfig = (app) => {
     if (app.get('env') === 'development' || app.get('env') === 'test') {
         app.use((err, req, res, next) =>
             res.status(err.status || 500).
-            json({
-                message: err.message,
-                error: err
-            })
+                json({
+                    message: err.message,
+                    error: err
+                })
         );
     }
 
