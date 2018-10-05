@@ -51,7 +51,7 @@ class userService {
     static saveUser(body) {
 
         const {
-            firstname, lastname, gender, date_of_birth, phone_number, image_url, password, oauth_type, oauth_id, state_code, city_code, country_code, address, email, fullname,
+            firstname, lastname, gender, date_of_birth, phone_number, image_url, password, oauth_type, oauth_id, state_code, city_code, country_code, address, email
         } = body;
 
         const d = new Date();
@@ -62,7 +62,7 @@ class userService {
             this.findUserByEmail(email).then((res) => {
                 bcrypt.hash(password, saltRounds).then((hash) => {
                     const queryBody = `
-                              INSERT INTO users(firstname, lastname, gender, date_of_birth, phone_number, image_url, password , oauth_type, oauth_id, state_code, city_code, country_code, address, email,added_at, updated_at, active, suspended_at)
+                              INSERT INTO users(firstname, lastname, gender, date_of_birth, phone_number, image_url, password , oauth_type, oauth_id, state_code, city_code, country_code, address, email, added_at, updated_at, active, suspended_at)
                               VALUES ('${firstname}', '${lastname}', '${gender}', '${date_of_birth}','${phone_number}','${image_url}','${hash}', '${oauth_type}', '${oauth_id}', '${state_code}', '${city_code}','${country_code}', '${address}', '${email}','${added_at}', '${added_at}', '${active}', '${added_at}')`;
                     db.query(queryBody).then((result) => {
                         if (result.rowCount >= 1) {
