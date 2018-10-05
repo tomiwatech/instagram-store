@@ -17,7 +17,7 @@ class userService {
      * @return {string} res
      */
     static findUserByEmail(email) {
-        const promise = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const query = `SELECT * FROM users WHERE email = '${email}'`;
             db.query(query).then((result) => {
                 if (result.rowCount === 0) {
@@ -34,8 +34,6 @@ class userService {
                 reject(err);
             });
         });
-
-        return promise;
     }
     /**
      * save new user

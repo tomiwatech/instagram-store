@@ -5,14 +5,13 @@ import helmet from 'helmet';
 import FileStreamRotator from 'file-stream-rotator';
 
 import loggerInit from './logger';
-import routes from '../app/routes/index';
-import config from './';
 import apiVersion1 from './versioning/v1';
 
 const logDirectory = './log';
 const checkLogDir = fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 const expressConfig = (app) => {
+    
     let accessLogStream;
     let logger;
 
@@ -57,8 +56,6 @@ const expressConfig = (app) => {
     app.disable('x-powered-by');
 
     app.use('/api/v1', apiVersion1);
-    //app.use('/api/v2', apiVersion2);
-    //app.use('/v1/', routes);
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {

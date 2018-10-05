@@ -3,7 +3,7 @@ import user from '../../app/routes/user';
 
 const api = Router();
 
-api.get('/', (req, res) => res.send({ ok: true, message: 'Welcome to tomiwalabs', status: 'API version 1' }));
+api.get('/', (req, res) => res.status(200).json({ ok: true, message: 'Welcome to OnePercentLab', status: 'API version 1' }));
 api.use('/', user);
 api.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

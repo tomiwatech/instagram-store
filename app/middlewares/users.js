@@ -18,7 +18,7 @@ class UserMiddleware {
         const {
             firstname, lastname, gender, date_of_birth, phone_number, image_url, password, oauth_type, oauth_id, state_code, city_code, country_code, address, email
         } = req.body;
-        console.log(firstname, lastname)
+        //console.log(firstname, lastname)
         if (!firstname || !lastname || !gender || !date_of_birth || !phone_number
             || !image_url || !password || !oauth_type || !oauth_id
             || !state_code || !city_code || !country_code || !address || !email) {
