@@ -25,6 +25,25 @@ CREATE TABLE users
     suspended_at VARCHAR (55) NOT NULL
 );
 
+
+-- Oauth Table 
+
+CREATE TABLE oauth
+(
+    username VARCHAR (50) NOT NULL,
+    user_id VARCHAR (50) NOT NULL,
+    added_at VARCHAR (50) NOT NULL,
+    updated_at VARCHAR (50) NOT NULL
+);
+
+-- INSER INTO OAUTH
+
+INSERT INTO oauth
+    (username,user_id,added_at,updated_at )
+VALUES
+    ('Michael', '34342', '11/23/0334', '11/23/0334');
+
+
 -- INSERT INTO TABLE
 
 INSERT INTO 

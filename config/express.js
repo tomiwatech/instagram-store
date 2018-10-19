@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import FileStreamRotator from 'file-stream-rotator';
+import cors from 'cors';
 
 import loggerInit from './logger';
 import apiVersion1 from './versioning/v1';
@@ -11,7 +12,7 @@ const logDirectory = './log';
 const checkLogDir = fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 const expressConfig = (app) => {
-    
+
     let accessLogStream;
     let logger;
 
@@ -50,12 +51,24 @@ const expressConfig = (app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
 
+    app.use(cors());
 
     // Use helmet to secure Express headers
     app.use(helmet());
     app.disable('x-powered-by');
 
     app.use('/api/v1', apiVersion1);
+    // app.use((req, res, next) => {
+    //     res.setHeader('Access-Control-Allow-Origin', '*');
+    //     // Request methods you wish to allow
+    //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    //     // Request headers you wish to allow
+    //     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    //     // Set to true if you need the website to include cookies in the requests sent
+    //     // to the API (e.g. in case you use sessions)
+    //     res.setHeader('Access-Control-Allow-Credentials', true);
+    //     next();
+    // });
 
     // catch 404 and forward to error handler
     app.use((req, res, next) => {

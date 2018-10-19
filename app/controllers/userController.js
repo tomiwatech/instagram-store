@@ -1,4 +1,15 @@
 import userService from '../services/userService';
+import OAuth2Client from 'google-auth-library';
+import http from 'http';
+import url from 'url';
+import querystring from 'querystring';
+import opn from 'opn';
+import keys from './keys.js';
+import passport from 'passport';
+import GoogleStrategy from '../../config/passport-google';
+import FacebookStrategy from '../../config/passport-facebook';
+
+//console.log(keys);
 /**
  * @exports
  * @class userController
@@ -11,7 +22,6 @@ class UserController {
      * @param {object} res - Response object
      * @return {json} res.json
      */
-
     static createUser(req, res) {
         const {
             firstname
@@ -35,72 +45,17 @@ class UserController {
             }
         });
     }
-    /**
-   * Creates a new user
-   * @staticmethod
-   * @param  {object} req - user object
-   * @param {object} res - Response object
-   * @return {json} res.json
-   */
-    static login(req, res) {
-        const {
-            username, password
-        } = req.body;
-        userService.login(username, password).then((response) => {
-            return res.status(200).json({
-                responseMessage: 'Authentication Successful',
-                body: response
-            });
-        }).catch((err) => {
-            return res.status(400).json({
-                responseMessage: err.responseMessage,
-            });
-        })
+
+    static googleRedirect(req, res) {
+        passport.authenticate('google');
     }
-    /**
-     * Creates a new user
-     * @staticmethod
-     * @param  {object} req - user object
-     * @param {object} res - Response object
-     * @return {json} res.json
-     */
-    static getAll(req, res) {
-        return res.status(200).json({
-            responseMessage: 'Authentication Successful',
-            body: 'ffd'
-        });
-        // userService.getAllUsers().then((result) => {
-        //     console.log(result);
-        //     return res.status(200).json({
-        //         responseMessage: 'Successfully fetched all Users',
-        //         data: result
-        //     });
-        // }).catch((err) => {
-        //     return res.status(400).json({
-        //         responseMessage: err.responseMessage,
-        //     });
-        // });
+
+
+    static facebookRedirect(req, res) {
+        passport.authenticate('facebook', { failureRedirect: '/api/v1', successRedirect: '/api/v1' })
     }
-    /**
-   * Creates a new user
-   * @staticmethod
-   * @param  {object} req - user object
-   * @param {object} res - Response object
-   * @return {json} res.json
-   */
-    static countAll(req, res) {
-        userService.countAllUsers().then((result) => {
-            console.log(result);
-            return res.status(200).json({
-                responseMessage: 'Successfully counted all Users',
-                total: result
-            });
-        }).catch((err) => {
-            return res.status(400).json({
-                responseMessage: err.responseMessage,
-            });
-        });
-    }
+
+
 }
 
 export default UserController;

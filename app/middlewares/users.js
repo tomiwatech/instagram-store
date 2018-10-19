@@ -1,3 +1,5 @@
+import Joi from 'joi';
+import signupSchema from '../models/validation';
 /**
  * 
  * @exports
@@ -6,7 +8,6 @@
 class UserMiddleware {
     /**
      * UserMiddleware
-     *
      * @staticmethod
      * @param  {object} req - Request object
      * @param {object} res - Response object
@@ -14,22 +15,12 @@ class UserMiddleware {
      * @return {json} res.json
      */
     static validateUserSignup(req, res, next) {
-
-        const {
-            firstname, lastname, gender, date_of_birth, phone_number, image_url, password, oauth_type, oauth_id, state_code, city_code, country_code, address, email
-        } = req.body;
-        //console.log(firstname, lastname)
-        if (!firstname || !lastname || !gender || !date_of_birth || !phone_number
-            || !image_url || !password || !oauth_type || !oauth_id
-            || !state_code || !city_code || !country_code || !address || !email) {
-
+        Joi.validate(req.body, signupSchema).then(value => next()).catch((err) => {
             return res.status(400).json({
                 responseCode: '01',
-                responseMessage: 'Please fill all fields',
+                responseMessage: err.details[0].message,
             });
-        }
-
-        next();
+        })
     }
 }
 
