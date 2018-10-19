@@ -6,5 +6,5 @@ checkstyle-result.xml
 *.log
 tmp/
 .env
-app/controllers/keys
+app/controllers/keys.js
 dist

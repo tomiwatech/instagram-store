@@ -1,5 +1,5 @@
 export default {
-    "web": {
+    "google": {
         client_id: "341088209549-v54jnqaf3k0gvivujoeic185r6nj68rb.apps.googleusercontent.com",
         project_id: "ig-store-backend",
         auth_uri: "https://accounts.google.com/o/oauth2/auth",

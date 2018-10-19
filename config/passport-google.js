@@ -5,9 +5,9 @@ import oauthService from '../app/services/oauthService'
 
 
 passport.use(new GoogleStrategy({
-    clientID: keys.web.client_id,
-    clientSecret: keys.web.client_secret,
-    callbackURL: keys.web.redirect_uris[0]
+    clientID: keys.google.client_id,
+    clientSecret: keys.google.client_secret,
+    callbackURL: keys.google.redirect_uris[0]
 }, (accessToken, refreshToken, profile, callbackFunction) => {
 
     let profileObject = {};
