@@ -1,13 +1,15 @@
 import passport from 'passport';
 import GoogleStrategy from 'passport-google-oauth20';
-import keys from '../app/controllers/keys';
 import oauthService from '../app/services/oauthService'
+import config from './configuration';
 
 
 passport.use(new GoogleStrategy({
-    clientID: keys.google.client_id,
-    clientSecret: keys.google.client_secret,
-    callbackURL: keys.google.redirect_uris[0]
+
+    clientID: config.googleClientId,
+    clientSecret: config.googleClientSecret,
+    callbackURL: config.googleCallbackUrl
+
 }, (accessToken, refreshToken, profile, callbackFunction) => {
 
     let profileObject = {};

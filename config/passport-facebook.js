@@ -1,12 +1,13 @@
 import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
-import keys from '../app/controllers/keys';
 import oauthService from '../app/services/oauthService'
+import config from './configuration';
 
 passport.use(new FacebookStrategy({
-    clientID: keys.facebook.clientID,
-    clientSecret: keys.facebook.clientSecret,
-    callbackURL: keys.facebook.callbackURL
+
+    clientID: config.facebookClientId,
+    clientSecret: config.facebookClientSecret,
+    callbackURL: config.facebookCallbackUrl
 },
     function (accessToken, refreshToken, profile, cb) {
         let profileObject = {};
