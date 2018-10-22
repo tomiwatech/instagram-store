@@ -4,7 +4,6 @@ import http from 'http';
 import url from 'url';
 import querystring from 'querystring';
 import opn from 'opn';
-import keys from './keys.js';
 import passport from 'passport';
 import GoogleStrategy from '../../config/passport-google';
 import FacebookStrategy from '../../config/passport-facebook';
