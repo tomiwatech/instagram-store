@@ -1,10 +1,10 @@
-import { Client } from 'pg';
-import config from '../configuration';
+import { Client } from "pg";
+import config from "../configuration";
 
 const connectionString = config.testDB;
 
 const client = new Client({
-  connectionString,
+    connectionString
 });
 
 client.connect();
