@@ -37,6 +37,7 @@ class userService {
                     }
                 })
                 .catch(e => {
+                    console.log(e)
                     err.rowCount = 0;
                     err.rows = [];
                     reject(err);
