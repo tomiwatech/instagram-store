@@ -11,7 +11,8 @@
     "test": "gulp test",
     "start": "gulp serve",
     "migrate": "node-pg-migrate",
-    "lint": "eslint"
+    "lint": "eslint",
+    "rebuild":"npm rebuild"
   },
   "author": "Sanni Michael Tomiwa",
   "license": "ISC",
