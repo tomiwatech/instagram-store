@@ -67,10 +67,8 @@ class UserControllerClass {
                 });
             })
             .catch(err => {
-                console.log(err);
-                return res.status(400).json({
-                    responseMessage: `Error Changing Password`
-                });
+                console.log('hi '+err);
+                return res.status(400).json(err);
             });
     }
 
@@ -107,6 +105,7 @@ class UserControllerClass {
                 });
             })
             .catch(err => {
+                console.log(err);
                 return res.status(400).json({
                     responseMessage: "There Was an Error Changing Password"
                 });
